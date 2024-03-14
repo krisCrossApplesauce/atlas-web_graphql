@@ -19,10 +19,10 @@ const tasks = [
 const TaskType = new GraphQLObjectType({
   name: 'Type',
   fields: {
-    id: GraphQLString,
-    title: GraphQLString,
-    weight: GraphQLInt,
-    description: GraphQLString
+    id: {type: GraphQLString},
+    title: {type: GraphQLString},
+    weight: {type: GraphQLInt},
+    description: {type: GraphQLString}
   }
 });
 
@@ -35,7 +35,7 @@ const RootQuery = new GraphQLObjectType({
         id: {type: GraphQLString}
       },
       resolve(parent, args) {
-        lodash.find(args, parent);
+        return lodash.find(tasks, {id: args.id});
       }
     }
   }
