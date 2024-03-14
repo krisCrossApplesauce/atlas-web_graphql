@@ -30,7 +30,7 @@ const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     task: {
-      name: TaskType,
+      type: TaskType,
       args: {
         id: {type: GraphQLString}
       },
