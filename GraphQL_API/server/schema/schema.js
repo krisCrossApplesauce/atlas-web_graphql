@@ -1,5 +1,7 @@
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLList, GraphQLSchema } = require('graphql');
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLSchema } = require('graphql');
 const lodash = require('lodash');
+const mongoose = require('mongoose');
+const Project = require('../models/project');
 
 const tasks = [
   { id: '1', title: 'Create your first webpage', weight: 1, description: 'Create your first HTML file 0-index.html with: -Add the doctype on the first line (without any comment) -After the doctype, open and close a html tag Open your file in your browser (the page should be blank)', projectId: '1' },
@@ -43,6 +45,28 @@ const ProjectType = new GraphQLObjectType({
   })
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addProject: () => ({
+      type: ProjectType,
+      args: {
+        title: {type: GraphQLNonNull(GraphQLString)},
+        weight: {type: GraphQLNonNull(GraphQLInt)},
+        description: {type: GraphQLNonNull(GraphQLString)}
+      },
+      resolve(parent, args) {
+        const newProj = new Project({
+          title: args.title,
+          weight: args.weight,
+          description: args.description
+        });
+        return newProj.save();
+      }
+    })
+  }
+});
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: () => ({
@@ -76,5 +100,6 @@ const RootQuery = new GraphQLObjectType({
 });
 
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation: Mutation
 });
