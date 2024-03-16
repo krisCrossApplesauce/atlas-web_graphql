@@ -1,10 +1,12 @@
 {
-  task(id: "2") {
+  projects {
+    id
     title
     weight
     description
-    project {
+    tasks {
       title
+      description
     }
   }
 }
