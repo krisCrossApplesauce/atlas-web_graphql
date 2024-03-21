@@ -1,2 +1,14 @@
-the task doesn't have the images for the desired output
-so I can't really answer correctly :T
+mutation Mutation($title: String!, $weight: Int!, $description: String!) {
+  addProject(title: $title, weight: $weight, description: $description) {
+    title
+    weight
+    description
+  }
+}
+
+query variables tab (this line is not the code, it just indicates where this second part was inserted)
+{
+  "title": "Bootstrap",
+  "weight": 1,
+  "description": "Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development."
+}

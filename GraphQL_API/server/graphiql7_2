@@ -1,2 +1,14 @@
-same for this one,
-can't do what it wants without the photo showing the result it wants
+mutation Mutation($title: String!, $weight: Int!, $description: String!) {
+  addTask(title: $title, weight: $weight, description: $description) {
+    title
+    weight
+    description
+  }
+}
+
+query variables tab (this line is not the code, it just indicates where this second part was inserted)
+{
+  "title": "Reboot styling",
+  "weight": 2,
+  "description": "Add Bootstrap to reset the CSS styling."
+}

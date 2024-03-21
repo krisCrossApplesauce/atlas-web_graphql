@@ -48,13 +48,13 @@ const ProjectType = new GraphQLObjectType({
 
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
-  fields: {
-    addProject: () => ({
+  fields: () => ({
+    addProject: {
       type: ProjectType,
       args: {
-        title: {type: GraphQLNonNull(GraphQLString)},
-        weight: {type: GraphQLNonNull(GraphQLInt)},
-        description: {type: GraphQLNonNull(GraphQLString)}
+        title: {type: new GraphQLNonNull(GraphQLString)},
+        weight: {type: new GraphQLNonNull(GraphQLInt)},
+        description: {type: new GraphQLNonNull(GraphQLString)}
       },
       resolve(parent, args) {
         const newProj = new Project({
@@ -62,10 +62,28 @@ const Mutation = new GraphQLObjectType({
           weight: args.weight,
           description: args.description
         });
-        return newProj.save();
+        newProj.save();
+        return newProj;
       }
-    })
-  }
+    },
+    addTask: {
+      type: TaskType,
+      args: {
+        title: {type: new GraphQLNonNull(GraphQLString)},
+        weight: {type: new GraphQLNonNull(GraphQLInt)},
+        description: {type: new GraphQLNonNull(GraphQLString)}
+      },
+      resolve(parent, args) {
+        const newTask = new Task({
+          title: args.title,
+          weight: args.weight,
+          description: args.description
+        });
+        newTask.save();
+        return newTask;
+      }
+    }
+  })
 });
 
 const RootQuery = new GraphQLObjectType({
