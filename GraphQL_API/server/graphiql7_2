@@ -1,14 +1,7 @@
-mutation Mutation($title: String!, $weight: Int!, $description: String!) {
-  addTask(title: $title, weight: $weight, description: $description) {
+mutation {
+  addTask(title: "Reboot styling", weight: 2, description: "Add Bootstrap to reset the CSS styling.") {
     title
     weight
     description
   }
-}
-
-query variables tab (this line is not the code, it just indicates where this second part was inserted)
-{
-  "title": "Reboot styling",
-  "weight": 2,
-  "description": "Add Bootstrap to reset the CSS styling."
 }

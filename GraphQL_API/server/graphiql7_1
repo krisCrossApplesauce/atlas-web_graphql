@@ -1,14 +1,7 @@
-mutation Mutation($title: String!, $weight: Int!, $description: String!) {
-  addProject(title: $title, weight: $weight, description: $description) {
+mutation {
+  addProject(title: "Bootstrap", weight: 1, description: "Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development.") {
     title
     weight
     description
   }
-}
-
-query variables tab (this line is not the code, it just indicates where this second part was inserted)
-{
-  "title": "Bootstrap",
-  "weight": 1,
-  "description": "Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development."
 }
