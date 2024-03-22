@@ -13,12 +13,12 @@ mongoose.connection.once('open', () => {
   console.log('connected to database');
 });
 
-app.use(cors());
-
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   graphiql: true
 }));
+
+app.use(cors());
 
 app.listen(4000, () => {
   console.log('now listening for request on port 4000');
